@@ -231,17 +231,60 @@ try {
     const result = JSON.parse(texto);
 
     document.getElementById("modalBody").innerHTML = `
-        <p><strong>Solicitud:</strong> ${result.solicitud}</p>
-        <p><strong>Monto:</strong> Bs.${result.monto}</p>
 
-        <a href="${result.whatsappUrl}"
-           target="_blank"
-           class="btn btn-success">
-           Abrir WhatsApp
-        </a>
-    `;
+<div class="text-center">
+
+<h3 class="text-success mb-3">
+Solicitud Registrada
+</h3>
+
+<p>
+Su solicitud
+<strong>${result.solicitud}</strong>
+fue registrada correctamente.
+</p>
+
+<p>
+Monto de consulta:
+<strong>Bs. ${result.monto}</strong>
+</p>
+
+<img
+src="${result.urlPago}"
+class="img-fluid my-3"
+style="max-width:250px"
+alt="QR Pago"
+>
+
+<p>
+Escanee el código QR para realizar el pago.
+</p>
+
+<div class="alert alert-info">
+
+Su solicitud será procesada por nuestro equipo.
+
+Una vez validado el pago nos comunicaremos
+con usted mediante WhatsApp o correo electrónico.
+
+</div>
+
+</div>
+
+`;
 
     modal.show();
+    e.target.reset();
+
+seleccionadas = [];
+
+actualizar();
+
+document
+.querySelectorAll(".card-selected")
+.forEach(card =>
+card.classList.remove("card-selected")
+);
     
     btn.disabled = false;
     btn.innerText = "Generar Solicitud";
