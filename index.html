@@ -208,6 +208,7 @@ const payload = {
     celular: formData.get("celular"),
     correo: formData.get("correo"),
     solicitud: seleccionadas.join(",")
+        };
     if(!/^[67]\d{7}$/.test(payload.celular)){
     alert("Ingrese un celular válido.");
     return;
